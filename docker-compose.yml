@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  exam:
+    container_name: exam-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./apache_config:/etc/apache2/sites-available
+    command: ["/bin/bash", "-c", "a2ensite custom.conf && apache2-foreground"]
